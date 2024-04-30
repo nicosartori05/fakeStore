@@ -13,31 +13,33 @@ const productos = ref([]);
 const categorias = ref([""]);
 const loading = ref(true);
 const categoriaSeleccionada = ref("");
-const searchItem = ref(""); 
-
+const searchItem = ref("");
 
 onMounted(async () => {
   await obtenerProductos();
 });
 
 watch(categoriaSeleccionada, async (newValue) => {
-  if (!categoriaSeleccionada.value) { 
-    productos.value = obtenerProductos(); 
+  if (!categoriaSeleccionada.value) {
+    productos.value = obtenerProductos();
   } else {
-  const data = await getProductsByCategory(newValue);
-  productos.value = data;
+    const data = await getProductsByCategory(newValue);
+    productos.value = data;
   }
 });
 
 watch(productos, () => {
-  console.log('watch',productos.value)
+  console.log("watch", productos.value);
 });
 
 function obtenerProducto() {
-  if (!searchItem.value) { 
-    productos.value = obtenerProductos(); 
+  if (!searchItem.value) {
+    productos.value = obtenerProductos();
   } else {
-    const productosFiltrados = getProductByName(searchItem.value, productos.value);
+    const productosFiltrados = getProductByName(
+      searchItem.value,
+      productos.value
+    );
     productos.value = productosFiltrados;
   }
 }
@@ -100,7 +102,12 @@ function obtenerCategorias() {
         {{ categoria }}
       </option>
     </select>
-    <p v-if="categoriaSeleccionada">{{ categoriaSeleccionada }}<span class="eliminar_categoria" @click="categoriaSeleccionada=''"> X</span></p>
+    <p v-if="categoriaSeleccionada">
+      {{ categoriaSeleccionada
+      }}<span class="eliminar_categoria" @click="categoriaSeleccionada = ''">
+        X</span
+      >
+    </p>
   </div>
 
   <Spinner :loading="loading"></Spinner>
@@ -118,12 +125,12 @@ function obtenerCategorias() {
   padding: 0;
 }
 .header_filter {
-.filtro{
-  border: 1px solid black;
-  padding: .2rem;
-  border-radius: 8px
-}
+  .filtro {
+    border: 1px solid black;
+    padding: 0.2rem;
+    border-radius: 8px;
   }
+}
 
 @media screen and (min-width: 320px) and (max-width: 500px) {
   .listado {
@@ -132,9 +139,14 @@ function obtenerCategorias() {
     grid-gap: 10px;
     align-items: center;
   }
-
+  .header_filter {
+    display: grid;
+    grid-template-columns: repeat(1fr);
+    grid-gap: 10px;
+    margin-bottom: 1rem;
+  }
 }
-.eliminar_categoria{
+.eliminar_categoria {
   font-size: 14px;
   font-weight: 700;
 }
@@ -150,7 +162,7 @@ function obtenerCategorias() {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
-    margin-bottom: 1rem
+    margin-bottom: 1rem;
   }
 }
 
@@ -167,8 +179,7 @@ function obtenerCategorias() {
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
     width: 80%;
-    margin-bottom: 1rem
+    margin-bottom: 1rem;
   }
 }
-
 </style>
