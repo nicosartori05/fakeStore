@@ -42,20 +42,20 @@ async function obtenerProducto(productId) {
                 <img :src="product.image" v-if="product.image" :alt="product.title">
             </div>
             <div class="col-sm-12 col-md-6 col-lg-7 col-xl-8 my-4">
-                <div class="row ms-2">
-                    <div class="col-sm-12 product_title">
+                <div class="row">
+                    <div class="product_title">
                         <h2>{{ product.title }}</h2>
                     </div>
-                    <div class="col-sm-12 product_category">
+                    <div class="product_category">
                         <p> {{ product.category }}</p>
                     </div>
-                    <div class="col-sm-12 product_description mt-2">
+                    <div class="product_description mt-2">
                         <p> {{ product.description }}</p>
                     </div>
-                    <div class="col-sm-12 product_price mt-2">
+                    <div class="product_price mt-2">
                         <h3>${{ product.price }}</h3>
                     </div>
-                    <div class="col-sm-12 buy_button text-center mt-4">
+                    <div class="buy_button text-center mt-4">
                         <button class="btn btn-success btn-lg w-100">BUY NOW</button>
                     </div>
 
