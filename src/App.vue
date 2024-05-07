@@ -7,14 +7,12 @@ import Spinner from "./core/components/Spinner.vue";
   <header>
     <Navbar></Navbar>
   </header>
-  <main>
+  <main class="container">
     <routerView></routerView>
   </main>
   <footer></footer>
 </template>
 
 <style scoped>
-main {
-  padding: 1rem;
-}
+
 </style>

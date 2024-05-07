@@ -4,6 +4,7 @@ import {
   getProductsByCategory,
   getProductByName,
 } from "../services/producto";
+import {setTitle} from '../../core/helpers/setTitle';
 import { ref, onMounted, watch } from "vue";
 import CardProduct from "../components/cardProduct/CardProduct.vue";
 import Spinner from "../../core/components/Spinner.vue";
@@ -17,6 +18,7 @@ const searchItem = ref("");
 
 onMounted(async () => {
   await obtenerProductos();
+  setTitle('productos')
 });
 
 watch(categoriaSeleccionada, async (newValue) => {

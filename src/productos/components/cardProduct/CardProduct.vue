@@ -27,7 +27,7 @@ defineProps({
       </p>
     </div>
     <div class="card-footer">
-      <router-link to="#" class="btn btn-primary">VER PRODUCTO</router-link>
+      <router-link :to="`productos/detalle/${product.id}`" class="btn btn-primary">VER PRODUCTO</router-link>
     </div>
   </div>
 </template>
