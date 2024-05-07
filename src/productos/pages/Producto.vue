@@ -56,7 +56,7 @@ async function obtenerProducto(productId) {
                         <h3>${{ product.price }}</h3>
                     </div>
                     <div class="buy_button text-center mt-4">
-                        <button class="btn btn-success btn-lg w-100">BUY NOW</button>
+                        <button class="btn btn-success btn-lg w-100">COMPRAR AHORA</button>
                     </div>
 
                 </div>
@@ -75,13 +75,6 @@ async function obtenerProducto(productId) {
 .header img{
     width: 80%;
     margin: 0 auto;    
-}
-
-@media screen and(min-width:768px){
-    .header div{
-        padding-right: 1rem;
-        border-right: 1px solid green;
-    }
 }
 
 </style>
