@@ -9,7 +9,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="row mt-4">
+  <div class="row pt-4">
     <div class="col-sm-12">
       <img class="img-fluid"src="C:\Users\Nicos\OneDrive\Escritorio\proyecto practica vue 4-4-2024\fake store\fake-store\src\assets\empresarios\empresarios.jpg">
     </div>
