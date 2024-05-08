@@ -1,12 +1,23 @@
 <script setup>
 import { ref, defineProps } from "vue";
 import { cortarString } from "../../../core/helpers/editText";
+import { useRouter } from "vue-router";
 
 const verMas = ref(false);
+const router = useRouter();
 
 defineProps({
   product: {},
 });
+
+const redirectToProductDetail = (product) => {
+  console.log(product)
+    router.push(`/productos/detalle/${product.id}`);
+    setTimeout(() => {
+      window.location.reload();
+      
+    }, 200);
+}
 </script>
 <template>
   <div class="card mt-2">
@@ -27,7 +38,7 @@ defineProps({
       </p>
     </div>
     <div class="card-footer">
-      <router-link :to="`productos/detalle/${product.id}`" class="btn btn-primary">VER PRODUCTO</router-link>
+      <button class="btn btn-primary" @click="redirectToProductDetail(product)">VER PRODUCTO</button>
     </div>
   </div>
 </template>

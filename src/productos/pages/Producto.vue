@@ -1,6 +1,6 @@
 <script setup>
 import { getProductById,getProductsByCategory } from '../services/producto';
-import CardProduct from '../components/cardProduct/CardProduct.vue';
+import Carrousel from '../../core/components/Carrousel.vue';
 import { useRouter } from 'vue-router';
 import { ref, onMounted } from 'vue';
 import Spinner from "../../core/components/Spinner.vue";
@@ -8,11 +8,9 @@ import Spinner from "../../core/components/Spinner.vue";
 const router = useRouter();
 
 const loading = ref(true);
-const loadingCarrousel = ref(true);
 const productId = ref(null); 
 const product = ref(null); 
 const productsRecomended = ref(null); 
-const scrollContainer = ref(null);
 
 onMounted(async () => {
     productId.value = router.currentRoute.value.params.id;
@@ -42,38 +40,13 @@ async function obtenerProductosRecomendados(categoria,limit) {
   try {
     const data = await getProductsByCategory(categoria,limit);
     productsRecomended.value = data;
+    console.log('productsRecomended', productsRecomended.value)
   } catch (error) {
     console.error("Error al obtener productos:", error);
   }
 }
 
-function scrollLeft() {
-    smoothScroll(scrollContainer.value, -400, 500); // Ajusta la distancia y la duración de la animación según sea necesario
-}
 
-function scrollRight() {
-    smoothScroll(scrollContainer.value, 400, 500); // Ajusta la distancia y la duración de la animación según sea necesario
-}
-function smoothScroll(element, distance, duration) {
-    const start = element.scrollLeft;
-    const startTime = performance.now();
-
-    function scroll(timestamp) {
-        const time = timestamp - startTime;
-        const easing = easeInOutQuad(time, start, distance, duration);
-        element.scrollLeft = easing;
-        if (time < duration) requestAnimationFrame(scroll);
-    }
-
-    function easeInOutQuad(t, b, c, d) {
-        t /= d / 2;
-        if (t < 1) return c / 2 * t * t + b;
-        t--;
-        return -c / 2 * (t * (t - 2) - 1) + b;
-    }
-
-    requestAnimationFrame(scroll);
-}
 </script>
 
 <template>
@@ -103,21 +76,9 @@ function smoothScroll(element, distance, duration) {
                 </div>
             </div>
         </div>
-
-            <div class="row m-auto">
-                <div class="col-12 my-4">
-                    <h4>Productos recomendados</h4>
-                </div>
-                <div class="carrousel-contenedor">
-                    <button class="prev-button" @click="scrollLeft"><i class="fi fi-rr-angle-left"></i></button>
-                    <div class="carrousel" ref="scrollContainer">
-                        <div class="col-sm-12 col-md-7 col-lg-6 col-xl-4 mx-3" v-for="producto of productsRecomended" :key="producto.id">
-                            <CardProduct :product="producto"></CardProduct>
-                        </div>
-                    </div>
-                    <button class="next-button" @click="scrollRight"><i class="fi fi-rr-angle-right"></i></button>
-                </div>
-            </div>
+        <div>
+            <Carrousel :productsRecomended="productsRecomended"></Carrousel>
+        </div>
     </div>
 </template>
 
@@ -137,28 +98,5 @@ function smoothScroll(element, distance, duration) {
     width: 70%;
 }
 
-.carrousel-contenedor {
-    display: flex;
-    align-items: center;
-    width: 100%;
-}
 
-.prev-button,
-.next-button {
-    background-color: transparent;
-    border: none;
-    /* padding: 5px 10px; */
-    /* margin: 0 10px; */
-    cursor: pointer;
-    i{
-        font-size: 2rem;
-    }
-}
-
-.carrousel{
-    display: flex;
-    overflow-x: auto;
-    scrollbar-width:none;
-    padding-bottom: 2rem;
-}
 </style>
