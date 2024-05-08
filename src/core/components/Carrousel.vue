@@ -11,11 +11,11 @@ onMounted(() => {
     
 })
 function scrollLeft() {
-    smoothScroll(scrollContainer.value, -400, 500);
+    smoothScroll(scrollContainer.value, -440, 500);
 }
 
 function scrollRight() {
-    smoothScroll(scrollContainer.value, 400, 500); 
+    smoothScroll(scrollContainer.value, 440, 500); 
 }
 function smoothScroll(element, distance, duration) {
     const start = element.scrollLeft;
