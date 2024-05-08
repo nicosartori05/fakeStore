@@ -1,6 +1,6 @@
 <script setup>
 import { getProductById,getProductsByCategory } from '../services/producto';
-import Carrousel from '../../core/components/Carrousel.vue';
+import CardProduct from '../components/cardProduct/CardProduct.vue';
 import { useRouter } from 'vue-router';
 import { ref, onMounted } from 'vue';
 import Spinner from "../../core/components/Spinner.vue";
@@ -38,7 +38,8 @@ async function obtenerProducto(productId) {
 
 async function obtenerProductosRecomendados(categoria,limit) {
   try {
-    const data = await getProductsByCategory(categoria,limit);
+    let data = await getProductsByCategory(categoria,limit);
+    data = data.filter(producto => producto.id !== product.value.id);
     productsRecomended.value = data;
     console.log('productsRecomended', productsRecomended.value)
   } catch (error) {
@@ -77,7 +78,14 @@ async function obtenerProductosRecomendados(categoria,limit) {
             </div>
         </div>
         <div>
-            <Carrousel :productsRecomended="productsRecomended"></Carrousel>
+            <div class="row">
+                <div class="col-12 my-4">
+                    <h4>Productos recomendados</h4>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3" v-for="producto of productsRecomended" :key="producto.id">
+                    <cardProduct :product="producto"></cardProduct>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -97,6 +105,5 @@ async function obtenerProductosRecomendados(categoria,limit) {
 .buy_button button{
     width: 70%;
 }
-
 
 </style>

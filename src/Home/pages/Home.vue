@@ -11,7 +11,7 @@ onMounted(() => {
 <template>
   <div class="row pt-4">
     <div class="col-sm-12">
-      <img class="img-fluid"src="/src/assets/empresarios/empresarios.jpg">
+      <img src="/src/assets/empresarios/empresarios.jpg">
     </div>
   </div>
   <h2 style="margin: 1rem 0" class="">
@@ -33,8 +33,8 @@ onMounted(() => {
     Con envío rápido y seguro a tu puerta y opciones de pago seguras, hacer compras en línea nunca ha sido tan conveniente. Únete a nuestra comunidad de compradores entusiastas y descubre la alegría de encontrar tus productos favoritos con nosotros.
   </p>
 
-  <p>1}+´LOL
-    ¡Comienza tu viaje de compras hoy mismo en Fake Store y encuentra todo lo que necesitas y más! <Router-link to="/productos">VER CATALOGO</Router-link>
+  <p>
+    ¡Comienza tu viaje de compras hoy mismo en Fake Store y encuentra todo lo que necesitas y más!  <Router-link to="/productos">VER CATALOGO</Router-link>
   </p>
 </template>
 

@@ -59,7 +59,6 @@ function smoothScroll(element, distance, duration) {
 .carrousel-contenedor {
     display: flex;
     align-items: center;
-    width: 100%;
 }
 
 .prev-button,
@@ -73,6 +72,7 @@ function smoothScroll(element, distance, duration) {
 }
 
 .carrousel{
+    width: 100%;
     display: flex;
     overflow-x: auto;
     scrollbar-width:none;

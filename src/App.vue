@@ -9,7 +9,9 @@ import Navbar from "./core/components/Navbar.vue";
   <main class="container">
     <routerView></routerView>
   </main>
-  <!-- <footer></footer> -->
+  <footer class="text-center">
+    <p class="py-5">Nicolas Sartori&copy; 2024</p> 
+  </footer>
 </template>
 
 <style scoped>
@@ -19,4 +21,11 @@ import Navbar from "./core/components/Navbar.vue";
   background-color:white;
 }
 
+main{
+}
+
+footer{
+  margin: 0;
+  padding: 0; 
+}
 </style>
