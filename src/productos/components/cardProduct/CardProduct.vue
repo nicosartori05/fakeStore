@@ -63,4 +63,9 @@ h5 {
   border: none;
   text-align: center;
 }
+@media screen and (min-width: 320px) and (max-width: 525px){
+  .card{
+    width:180px;
+  }
+}
 </style>

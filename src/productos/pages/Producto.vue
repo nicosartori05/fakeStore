@@ -147,8 +147,8 @@ function smoothScroll(element, distance, duration) {
 .next-button {
     background-color: transparent;
     border: none;
-    padding: 5px 10px;
-    margin: 0 10px;
+    /* padding: 5px 10px; */
+    /* margin: 0 10px; */
     cursor: pointer;
     i{
         font-size: 2rem;
