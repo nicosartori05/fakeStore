@@ -15,7 +15,7 @@ const productsRecomended = ref(null);
 onMounted(async () => {
     productId.value = router.currentRoute.value.params.id;
 
-    if (productId.value) { // Aquí verificamos si productId.value existe
+    if (productId.value) {
         await obtenerProducto(productId.value);
     } else {
         console.error('No se proporcionó ningún ID de producto en los parámetros de la ruta');

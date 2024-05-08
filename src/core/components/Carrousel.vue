@@ -48,7 +48,7 @@ function smoothScroll(element, distance, duration) {
                     <button class="prev-button" @click="scrollLeft"><i class="fi fi-rr-angle-left"></i></button>
                     <div class="carrousel" ref="scrollContainer">
                         <div class="col-sm-12 col-md-7 col-lg-6 col-xl-4 mx-3" v-for="producto of productsRecomended" :key="producto.id">
-                            <CardProduct :product="producto"></CardProduct>
+                            <CardProduct :product="producto" :recomendado="true"></CardProduct>
                         </div>
                     </div>
                     <button class="next-button" @click="scrollRight"><i class="fi fi-rr-angle-right"></i></button>

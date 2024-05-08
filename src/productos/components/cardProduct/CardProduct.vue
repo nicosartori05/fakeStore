@@ -8,6 +8,7 @@ const router = useRouter();
 
 defineProps({
   product: {},
+  recomendado: false,
 });
 
 const redirectToProductDetail = (product) => {
@@ -20,7 +21,7 @@ const redirectToProductDetail = (product) => {
 }
 </script>
 <template>
-  <div class="card mt-2">
+  <div :class="recomendado ? 'card card-carrousel mt-2' : 'card mt-2'">
     <div class="card-header">
       <img :src="product.image" class="card-img-top" :alt="product.title" />
     </div>
@@ -45,6 +46,12 @@ const redirectToProductDetail = (product) => {
 <style scoped>
   .card{
     width: 300px;
+    height: auto;
+    min-height: 320px;
+    margin: auto;
+  }
+  .card-carrousel{
+    width: 180px;
     height: auto;
     min-height: 320px;
     margin: auto;
@@ -74,9 +81,9 @@ h5 {
   border: none;
   text-align: center;
 }
-@media screen and (min-width: 320px) and (max-width: 525px){
-  .card{
+/* @media screen and (min-width: 320px) and (max-width: 525px){
+  .card-carrousel{
     width:180px;
   }
-}
+} */
 </style>
