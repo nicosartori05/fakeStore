@@ -65,59 +65,60 @@ function obtenerCategorias() {
 </script>
 
 <template>
-  <h2>Productos</h2>
+  <div class="py-4">
+    <div class="header_filter">
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          aria-label="Buscar producto"
+          placeholder="Busca un producto"
+          aria-describedby="button-addon2"
+          v-model="searchItem"
+          @input="obtenerProducto()"
+          @keyup.enter="obtenerProducto()"
+          @click="searchItem = ''"
+        />
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          id="button-addon2"
+          @click="obtenerProducto()"
+        >
+          Buscar
+        </button>
+      </div>
 
-  <div class="header_filter">
-    <div class="input-group">
-      <input
-        type="text"
-        class="form-control"
-        aria-label="Buscar producto"
-        placeholder="Busca un producto"
-        aria-describedby="button-addon2"
-        v-model="searchItem"
-        @input="obtenerProducto()"
-        @keyup.enter="obtenerProducto()"
-        @click="searchItem = ''"
-      />
-      <button
-        class="btn btn-outline-secondary"
-        type="button"
-        id="button-addon2"
-        @click="obtenerProducto()"
+      <select
+        class="form-select"
+        aria-label="Default select example"
+        v-model="categoriaSeleccionada"
       >
-        Buscar
-      </button>
+        <option value="" disabled selected>Filtrar por categoría</option>
+        <option
+          v-for="categoria of categorias"
+          :key="categoria"
+          :value="categoria"
+        >
+          {{ categoria }}
+        </option>
+      </select>
+      <p v-if="categoriaSeleccionada">
+        {{ categoriaSeleccionada
+        }}<span class="eliminar_categoria" @click="categoriaSeleccionada = ''">
+          X</span
+        >
+      </p>
     </div>
 
-    <select
-      class="form-select"
-      aria-label="Default select example"
-      v-model="categoriaSeleccionada"
-    >
-      <option value="" disabled selected>Filtrar por categoría</option>
-      <option
-        v-for="categoria of categorias"
-        :key="categoria"
-        :value="categoria"
-      >
-        {{ categoria }}
-      </option>
-    </select>
-    <p v-if="categoriaSeleccionada">
-      {{ categoriaSeleccionada
-      }}<span class="eliminar_categoria" @click="categoriaSeleccionada = ''">
-        X</span
-      >
-    </p>
+    <Spinner :loading="loading"></Spinner>
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3" v-for="producto of productos" :key="producto.id">
+        <CardProduct :product="producto"></CardProduct>
+      </div>
+    </div>
   </div>
-
-  <Spinner :loading="loading"></Spinner>
-  <ul class="listado">
-    <li v-for="producto of productos">
-      <CardProduct :product="producto"></CardProduct>
-    </li>
-  </ul>
+  
 </template>
 
 <style scoped>
@@ -125,22 +126,17 @@ function obtenerCategorias() {
   list-style: none;
   margin: 0;
   padding: 0;
+
 }
 .header_filter {
-  .filtro {
-    border: 1px solid black;
-    padding: 0.2rem;
-    border-radius: 8px;
-  }
+        .filtro {
+          border: 1px solid black;
+          padding: 0.2rem;
+          border-radius: 8px;
+        }
 }
 
 @media screen and (min-width: 320px) and (max-width: 500px) {
-  .listado {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-gap: 10px;
-    align-items: center;
-  }
   .header_filter {
     display: grid;
     grid-template-columns: repeat(1fr);
@@ -148,18 +144,14 @@ function obtenerCategorias() {
     margin-bottom: 1rem;
   }
 }
+
+
+
 .eliminar_categoria {
   font-size: 14px;
   font-weight: 700;
 }
 @media screen and (min-width: 501px) and (max-width: 768px) {
-  .listado {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 10px;
-    align-items: center;
-  }
-
   .header_filter {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -169,13 +161,6 @@ function obtenerCategorias() {
 }
 
 @media screen and (min-width: 769px) and (max-width: 4000px) {
-  .listado {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 10px;
-    align-items: center;
-  }
-
   .header_filter {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

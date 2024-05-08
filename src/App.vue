@@ -1,6 +1,5 @@
 <script setup>
 import Navbar from "./core/components/Navbar.vue";
-import Spinner from "./core/components/Spinner.vue";
 </script>
 
 <template>
@@ -10,9 +9,14 @@ import Spinner from "./core/components/Spinner.vue";
   <main class="container">
     <routerView></routerView>
   </main>
-  <footer></footer>
+  <!-- <footer></footer> -->
 </template>
 
 <style scoped>
+
+.container{
+  margin-top: 0;
+  background-color:white;
+}
 
 </style>

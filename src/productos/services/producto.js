@@ -27,9 +27,9 @@ export const getProductById = async (idProduct) => {
     }
 }
 
-export const getProductsByCategory = async (category) => {
+export const getProductsByCategory = async (category,limit = null) => {
     try {
-        const response = await fetch(apiURL + `/category/${category}`);
+        const response = await fetch(apiURL + `/category/${category}?limit=${limit}`);
         if (!response.ok) {
             throw new Error('No se PUDO obtener los productos de esa categoria.');
         }

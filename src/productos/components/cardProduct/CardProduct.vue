@@ -9,12 +9,12 @@ defineProps({
 });
 </script>
 <template>
-  <div class="card">
+  <div class="card mt-2">
     <div class="card-header">
       <img :src="product.image" class="card-img-top" :alt="product.title" />
     </div>
     <div class="card-body">
-      <h5 class="card-title">{{ cortarString(product.title, 18) }}</h5>
+      <h5 class="card-title">{{ product.title }}</h5>
       <p class="card-text">
         <small class="text-body-secondary">{{ product.category }}</small>
       </p>
@@ -32,36 +32,35 @@ defineProps({
   </div>
 </template>
 <style scoped>
-.verMas {
-  border: none;
-  background-color: transparent;
-  font-weight: 500;
-}
-
-.card-footer {
-  background-color: transparent;
-  border: none;
-  text-align: center;
-}
-.card-header {
-  background-color: white;
-  text-align: center;
-}
-
-.card {
-    width: 100%;
+  .card{
+    width: 300px;
     height: auto;
-    min-height: 300px;
-    max-height: auto;
-
-    display: flex;
-    flex-direction: column;
+    min-height: 320px;
+    margin: auto;
   }
   .card-header {
     text-align: center;
+    background-color: white;
     img {
       width: 150px;
       height: 150px;
     }
   }
+  .verMas {
+  border: none;
+  background-color: transparent;
+  font-weight: 500;
+}
+
+h5 {
+    overflow: hidden;
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    text-overflow: ellipsis; /* Agrega puntos suspensivos al final del texto */
+}
+ 
+.card-footer {
+  background-color: transparent;
+  border: none;
+  text-align: center;
+}
 </style>
